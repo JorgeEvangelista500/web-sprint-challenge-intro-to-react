@@ -2,18 +2,21 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import axios from 'axios'
 import Character from './components/Character';
+import Details from './components/Details';
 
 const App = () => {
 const [characters, setCharacters] = useState([])
+const [currentCharacter, setCurrentCharacter] = useState('1')
 
-  // Try to think through what state you'll need for this app before starting. Then build out
-  // the state properties here.
+const openDetails = character=> {
+  setCurrentCharacter(character)
+}
 
-  // Fetch characters from the API in an effect hook. Remember, anytime you have a 
-  // side effect in a component, you want to think about which state and/or props it should
-  // sync up with, if any.
+const closeDetails = () => {
+  setCurrentCharacter(null)
+}
 
-  useEffect(() => {
+useEffect(() => {
     axios.get('https://swapi.dev/api/people')
       .then(res => {
         setCharacters(res.data)
@@ -29,9 +32,15 @@ const [characters, setCharacters] = useState([])
       <h1 className="Header">React Wars!</h1>
       {
         characters.map((chr) => {
-          return <Character info={chr} key={chr.name}/>
+          return (
+          <div>
+            <Character info={chr} key={chr.name} action={openDetails}/>
+           {currentCharacter && currentCharacter.name === chr.name && <Details details={currentCharacter} close={closeDetails} />}
+          </div>)
         })
+
       }
+  
     </div>
   );
 }
