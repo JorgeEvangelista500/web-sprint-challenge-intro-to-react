@@ -26,7 +26,7 @@ const [characters, setCharacters] = useState([])
 
   return (
     <div className="App">
-      <h1 className="Header">Characters</h1>
+      <h1 className="Header">React Wars!</h1>
       {
         characters.map((chr) => {
           return <Character info={chr} key={chr.name}/>

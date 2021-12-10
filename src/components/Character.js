@@ -1,24 +1,26 @@
 // Write your Character component here
 import React from "react";
-import styled, {keyframes} from "styled-components";
+import styled from "styled-components";
 
-const kf = keyframes`
-    50% {
-        transform: scale(0.8)
-    }
-    100%{
-        opacity: 1;
-        transform: scale(1)
-        }
-    }
+
+
+const StyledCharacter = styled.div`
+
+    color:yellow;
+    margin: 2% 26%;
+    border: 1px solid green;
+    padding: 1% 5%;
+    font-size: 20px;
+    background-color: black;
+
 `
 
 export default function Character({info}) {
 
 return (
-    <div>
-        {info.name}
-    </div>
+    <StyledCharacter>
+        {info.name} {info.date}
+    </StyledCharacter>
 )
  
 
