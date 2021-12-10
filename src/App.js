@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import axios from 'axios'
+import Character from './components/Character';
 
 const App = () => {
 const [characters, setCharacters] = useState([])
@@ -26,6 +27,11 @@ const [characters, setCharacters] = useState([])
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
+      {
+        characters.map((chr) => {
+          return <Character info={chr} key={chr.name}/>
+        })
+      }
     </div>
   );
 }
